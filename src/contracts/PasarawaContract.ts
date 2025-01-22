@@ -51,6 +51,7 @@ export const PasarawaContract = async () => {
             return contract;
         } else {
             // Throw error if no Web3 provider is detected
+            alert('No Web3 provider detected. Please install MetaMask or another provider for accessing this application.');
             throw new Error('No Web3 provider detected. Please install MetaMask or another provider.');
         }
     } catch (error) {
