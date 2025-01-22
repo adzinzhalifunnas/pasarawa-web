@@ -20,6 +20,7 @@ interface Product {
 function Home() {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [isNotWeb3, setIsNotWeb3] = useState<boolean>(false);
 
     const fetchProducts = async (): Promise<void> => {
         try {
@@ -43,6 +44,7 @@ function Home() {
             setProducts(productList);
             console.log("Products fetched successfully:", productList);
         } catch (error) {
+            setIsNotWeb3(true);
             console.error("Error fetching products:", error);
         } finally {
             setLoading(false);
@@ -81,6 +83,11 @@ function Home() {
                                     seller={product.seller}
                                 />
                             ))
+                        )}
+                        {isNotWeb3 && (
+                            <div className="flex items-center justify-center col-span-full">
+                                <p className="text-xl font-bold text-red-500">No Web3 provider detected. Please install MetaMask or another provider for accessing this application.</p>
+                            </div>
                         )}
                     </div>
                 </div>
